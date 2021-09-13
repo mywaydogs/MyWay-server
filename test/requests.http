@@ -1,0 +1,109 @@
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "user",
+    "lastName": "1",
+    "email": "user1@gmail.com",
+    "password": "useruser",
+    "address": "some-address",
+    "phone": "050-123-1234"
+}
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "user1@gmail.com",
+    "password": "useruser"
+}
+
+###
+
+POST http://localhost:3000/api/auth/register
+Content-Type: application/json
+
+{
+    "firstName": "user",
+    "lastName": "2",
+    "email": "user2@gmail.com",
+    "password": "useruser",
+    "address": "some-address",
+    "phone": "050-123-1234"
+}
+
+
+###
+
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+    "email": "user2@gmail.com",
+    "password": "useruser"
+}
+
+###
+
+POST http://localhost:3000/api/customers
+Content-Type: application/json
+Cookie: accessToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtmaXJAenZpLmNvbSIsInN1YiI6MSwiaWF0IjoxNjI5MTMzMjQxLCJleHAiOjE2MjkxMzM1NDF9.pCh-s-4WCO7UdBg7Mczfp12jSUFZS6MumfiPsYHpKU4.wRsofl%2Bot7aPCwd8qlFUtSAR%2FIHBjzdXMPIsyhZI%2FmU;
+
+{
+    "firstName": "customer",
+    "lastName": "1",
+    "email": "customer1@gmail.com",
+    "address": "some-address",
+    "phone": "050-123-1234",
+    "userId": 1
+}
+
+###
+
+POST http://localhost:3000/api/customers
+Content-Type: application/json
+Cookie: accessToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtmaXJAenZpLmNvbSIsInN1YiI6MSwiaWF0IjoxNjI5MTMzMjQxLCJleHAiOjE2MjkxMzM1NDF9.pCh-s-4WCO7UdBg7Mczfp12jSUFZS6MumfiPsYHpKU4.wRsofl%2Bot7aPCwd8qlFUtSAR%2FIHBjzdXMPIsyhZI%2FmU;
+
+{
+    "firstName": "customer",
+    "lastName": "2",
+    "email": "customer2@gmail.com",
+    "address": "some-address",
+    "phone": "050-123-1234",
+    "userId": 1
+}
+
+
+###
+
+POST http://localhost:3000/api/customers
+Content-Type: application/json
+Cookie: accessToken=s%3AeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtmaXJAenZpLmNvbSIsInN1YiI6MSwiaWF0IjoxNjI5MTMzMjQxLCJleHAiOjE2MjkxMzM1NDF9.pCh-s-4WCO7UdBg7Mczfp12jSUFZS6MumfiPsYHpKU4.wRsofl%2Bot7aPCwd8qlFUtSAR%2FIHBjzdXMPIsyhZI%2FmU;
+
+{
+    "firstName": "customer",
+    "lastName": "3",
+    "email": "customer3@gmail.com",
+    "address": "some-address",
+    "phone": "050-123-1234",
+    "userId": 3
+}
+
+
+###
+
+POST http://localhost:3000/api/dogs
+Content-Type: application/json
+
+{
+    "name": "Maui",
+    "age_years": 1,
+    "age_months": 2,
+    "breed": "Shelti",
+    "color": "Tri-color",
+    "customerId": 1
+}
