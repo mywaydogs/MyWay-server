@@ -9,6 +9,8 @@ import {
 } from '@nestjs/common';
 import { JwtAccessGuard } from 'src/jwt-access/jwt-access.guard';
 import { JwtRefreshGuard } from 'src/jwt-refresh/jwt-refresh.guard';
+import { User } from 'src/users/entities/user.entity';
+import { UserDec } from 'src/users/user.decorator';
 import { AuthService } from './auth.service';
 import { RegisterUserDto } from './dto/register-user.dto';
 import { LocalAuthGuard } from './local-auth.guard';
@@ -19,7 +21,11 @@ export class AuthController {
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
-  async login(@Req() req, @Res({ passthrough: true }) response): Promise<void> {
+  async login(
+    @Req() req,
+    @Res({ passthrough: true }) response,
+    @UserDec() user: User,
+  ): Promise<User> {
     const { access_token, refresh_token } = await this.authService.login(
       req.user,
     );
@@ -33,6 +39,8 @@ export class AuthController {
       httpOnly: true,
       path: '/api',
     });
+
+    return user;
   }
 
   @Post('register')
