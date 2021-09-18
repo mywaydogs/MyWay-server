@@ -1,4 +1,6 @@
-export interface TrainerDto { 
-    firstName: string;
-    lastName: string;
+export interface TrainerDto {
+  id: number;
+  name: string;
+  aboutMe: string;
+  profileImage: string;
 }

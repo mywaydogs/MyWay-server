@@ -1,7 +1,6 @@
 export interface UpdateUserDto {
   password: string;
   email: string;
-  firstName: string;
-  lastName: string;
+  name: string;
   aboutMe: string;
 }

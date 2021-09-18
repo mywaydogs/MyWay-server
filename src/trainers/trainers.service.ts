@@ -12,13 +12,13 @@ export class TrainersService {
 
   async findAll(): Promise<TrainerDto[]> {
     return await this.usersRepository.find({
-      select: ['id', 'firstName', 'lastName', 'aboutMe'],
+      select: ['id', 'name', 'aboutMe', 'profileImage'],
     });
   }
 
   async findOne(id: number): Promise<TrainerDto> {
     return this.usersRepository.findOne(id, {
-      select: ['id', 'firstName', 'lastName', 'aboutMe'],
+      select: ['id', 'name', 'aboutMe', 'profileImage'],
     });
   }
 }

@@ -101,15 +101,14 @@ export class AuthService {
   }
 
   async register(registerUserDto: RegisterUserDto): Promise<void> {
-    const { email, password, firstName, lastName } = registerUserDto;
+    const { email, password, name } = registerUserDto;
 
     const hashedPassword = await this.hashPassword(password);
 
     const createUserDto: CreateUserDto = {
       email,
       password: hashedPassword,
-      firstName,
-      lastName,
+      name,
     };
 
     await this.usersService.createUser(createUserDto);
