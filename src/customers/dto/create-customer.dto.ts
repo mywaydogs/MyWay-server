@@ -4,5 +4,4 @@ export class CreateCustomerDto {
   email: string;
   address: string;
   phone: string;
-  userId: number;
 }

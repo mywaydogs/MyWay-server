@@ -10,6 +10,7 @@ import {
   UseGuards,
   Put,
 } from '@nestjs/common';
+import { APICreateResult } from 'src/dto/api/api-create-result.dto';
 import { JwtAccessGuard } from 'src/jwt-access/jwt-access.guard';
 import { User } from 'src/users/entities/user.entity';
 import { UserDec } from 'src/users/user.decorator';
@@ -29,8 +30,8 @@ export class DogsController {
   constructor(private readonly dogsService: DogsService) {}
 
   @Post()
-  async create(@Body() createDogDto: CreateDogDto) {
-    await this.dogsService.create(createDogDto);
+  async create(@Body() createDogDto: CreateDogDto): Promise<APICreateResult> {
+    return await this.dogsService.create(createDogDto);
   }
 
   @UseGuards(JwtAccessGuard)
@@ -95,10 +96,7 @@ export class DogsController {
     @Param('goalId') goalId: number,
     @Body() updateTrainingGoalDto: UpdateTrainingGoalDto,
   ): Promise<void> {
-    await this.dogsService.updateTrainingGoal(
-      goalId,
-      updateTrainingGoalDto,
-    );
+    await this.dogsService.updateTrainingGoal(goalId, updateTrainingGoalDto);
   }
 
   @UseGuards(JwtAccessGuard)

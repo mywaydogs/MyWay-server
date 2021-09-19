@@ -1,9 +1,21 @@
-import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
-import { Customer } from './entities/customer.entity';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
+import { APICreateResult } from 'src/dto/api/api-create-result.dto';
+import { JwtAccessGuard } from 'src/jwt-access/jwt-access.guard';
+import { User } from 'src/users/entities/user.entity';
+import { UserDec } from 'src/users/user.decorator';
 import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { FindAllQueryDto } from './dto/find-all.query.dto';
 
+@UseGuards(JwtAccessGuard)
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
@@ -26,9 +38,10 @@ export class CustomersController {
   }
 
   @Post('')
-  async createCustomer(
+  async create(
     @Body() createCustomerDto: CreateCustomerDto,
-  ): Promise<void> {
-    return await this.customersService.create(createCustomerDto);
+    @UserDec() user: User,
+  ): Promise<APICreateResult> {
+    return await this.customersService.create(user.id, createCustomerDto);
   }
 }

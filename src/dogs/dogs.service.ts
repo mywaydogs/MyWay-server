@@ -1,6 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { getConnection, Repository } from 'typeorm';
+import { APICreateResult } from 'src/dto/api/api-create-result.dto';
+import { getConnection, InsertResult, Repository } from 'typeorm';
 import { CreateDogDto } from './dto/create-dog.dto';
 import { CreateTrainingGoalTaskDto } from './dto/create-training-goal-task.dto';
 import { CreateTrainingGoalDto } from './dto/create-training-goal.dto';
@@ -22,13 +23,15 @@ export class DogsService {
     private readonly trainingGoalTasksRepository: Repository<TrainingGoalTask>,
   ) {}
 
-  async create(createDogDto: CreateDogDto): Promise<void> {
-    const { age_years, age_months, ...rest } = createDogDto;
+  async create(createDogDto: CreateDogDto): Promise<APICreateResult> {
+    const { ageYears, ageMonths, ...rest } = createDogDto;
 
-    await this.dogsRepository.insert({
+    let res: InsertResult = await this.dogsRepository.insert({
       ...rest,
-      birthDate: this.calculateBirthDate(age_years, age_months),
+      birthDate: this.calculateBirthDate(ageYears, ageMonths),
     });
+
+    return res.identifiers[0] as APICreateResult;
   }
 
   async findAll(userId: number, findAllQueryDto: FindAllQueryDto) {
@@ -49,10 +52,10 @@ export class DogsService {
   }
 
   async update(id: number, updateDogDto: UpdateDogDto): Promise<void> {
-    const { age_years, age_months, ...rest } = updateDogDto;
+    const { ageYears, ageMonths, ...rest } = updateDogDto;
     await this.dogsRepository.update(id, {
       ...rest,
-      birthDate: this.calculateBirthDate(age_years, age_months),
+      birthDate: this.calculateBirthDate(ageYears, ageMonths),
     });
   }
 

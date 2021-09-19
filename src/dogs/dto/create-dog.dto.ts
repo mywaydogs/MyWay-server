@@ -1,8 +1,19 @@
+import { DogMultipleChoiceDto } from './dog-multiple-choice.dto';
+
 export class CreateDogDto {
-  name: string;
-  age_years?: number;
-  age_months?: number;
-  breed?: string;
-  color?: string;
   customerId: number;
+  name: string;
+  ageYears: number;
+  ageMonths: number;
+  breed: string;
+  socialization: string;
+  litterSeparation: string;
+  origin: string;
+  healthIssues: string;
+  foodDrive: DogMultipleChoiceDto;
+  preyDrive: DogMultipleChoiceDto;
+  currentSchedule: string;
+  energyLevel: DogMultipleChoiceDto;
+  homeBehaviours: string;
+  outsideBehaviours: string;
 }

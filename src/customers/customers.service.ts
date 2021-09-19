@@ -1,9 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import { Customer } from './entities/customer.entity';
+import { APICreateResult } from 'src/dto/api/api-create-result.dto';
+import { InsertResult, Repository } from 'typeorm';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { FindAllQueryDto } from './dto/find-all.query.dto';
+import { Customer } from './entities/customer.entity';
 
 @Injectable()
 export class CustomersService {
@@ -24,7 +25,14 @@ export class CustomersService {
     return await this.customersRepository.findOne(id);
   }
 
-  async create(createCustomerDto: CreateCustomerDto): Promise<void> {
-    await this.customersRepository.insert(createCustomerDto);
+  async create(
+    userId: number,
+    createCustomerDto: CreateCustomerDto,
+  ): Promise<APICreateResult> {
+    let res: InsertResult = await this.customersRepository.insert({
+      ...createCustomerDto,
+      userId,
+    });
+    return res.identifiers[0] as APICreateResult;
   }
 }
