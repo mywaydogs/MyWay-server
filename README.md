@@ -1,73 +1,79 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+# MyWay 
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This repository is for the server-side of the project. You can find the client side at [MyWay-client](https://github.com/zvikfir/MyWay-client).
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Introduction
 
-## Description
+MyWay (name was inspired by the author's dog - "Maui") is an open-source project which aims to serve as a Customer Management System (CMS) platform for dog trainers, helping them to keep track of their work with each customer, including abilities such as sending a summary of the last session directly to the customer, or plan the progress that needs to be made along the training sessions in a chart that is easy to use and read.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+It is built using [Next.js](https://nextjs.org) (based on [React](https://reactjs.org)) and [tailwindcss](https://tailwindcss.com) in the frontend, [NestJS](https://nestjs.com) in the backend, and [PostgreSQL](https://www.postgresql.org) as the database.
 
-## Installation
+## Contributing
 
-```bash
-$ npm install
-```
+This project needs you! If you're passionate about fullstack development, and would like to contribute some of your free time to make this project go live, feel free to contact me at <zvikfir10@gmail.com>. I will help you with setting up the environment and guide you towards your first PR in the project.
 
-## Running the app
+** **You don't have to know any of the technologies or libraries to contribute. You can learn from example and learn along the way.**
 
-```bash
-# development
-$ npm run start
+You can find detailed instructions on how to set up the environment yourself in the [Getting Started](#getting-started) section.
 
-# watch mode
-$ npm run start:dev
+This project also needs graphic designers and/or UI/IX specialists who can consult about how to build the UI, and design it. If you're interested, feel free to make contact as well.
 
-# production mode
-$ npm run start:prod
-```
+### Current Status
 
-## Test
+Below you will find a photo of a dog's page describing details about it, and in it there's a chart that is meant to serve as a way for dog trainers to plan training goals.
+
+This photo is not up to date, but I think it demonstrates the purpose of this project well.
+
+![Dog profile page](doc/assets/dog-profile-page.png)
+
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Getting Started
+
+Go to a folder in which you want to place the project.
+
+Run the following:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+mkdir MyWay
+cd MyWay
+git clone git@github.com:zvikfir/MyWay-client.git client
+git clone git@github.com:zvikfir/MyWay-server.git server
 ```
 
-## Support
+To run the server:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cd server
+npm install
+npm run start:dev
+```
 
-## Stay in touch
+To run the client:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+To set up the database, you need to [install PostgreSQL](https://www.postgresql.org/download/), and make sure you have a database called `myway`, and that you have the correct credentials set up in `server/ormconfig.json`. [TypeORM](https://typeorm.io) in development mode is configured to create the database tables for you.
+
+## Directory Layout
+
+On the `client`, important directories are:
+* pages - Next.js automatically creates routes according to file names in this folder.
+* components - a directory with all the React components which are not pages.
+* services - contains the service layer of the application.
+* stores - contains the [MobX](https://mobx.js.org/README.html) stores of the application ([Recommended reading to get you started](https://dev.to/zvikfir/next-js-nestjs-mobx-and-how-i-structured-my-open-source-project-5gco)).
+* styles - contains globals.css file which affects the global styles in the application. Other styles are inlined using [tailwindcss](https://tailwindcss.com).
+* libraries - includes common functions which are grouped into libraries.
+* dto - contains DTOs used in the application.
+
+On the `server`, the guidelines documented in the [NestJS documentation](https://docs.nestjs.com) are kept.
 
 ## License
 
-Nest is [MIT licensed](LICENSE).
+This project is [MIT licensed](./LICENSE).
