@@ -35,7 +35,7 @@ import * as Joi from 'joi';
       useFactory: (configService: ConfigService) => ({
         autoLoadEntities: true,
         type: 'postgres',
-        url: configService.get('DATABASE_URL'),
+        url: `${configService.get('DATABASE_URL')}?sslmode=require`,
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize:
           configService.get('NODE_ENV') === 'development' ? true : false,
