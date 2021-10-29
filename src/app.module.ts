@@ -10,12 +10,37 @@ import { JwtAccessModule } from './jwt-access/jwt-access.module';
 import { CustomersModule } from './customers/customers.module';
 import { DogsModule } from './dogs/dogs.module';
 import { TrainersModule } from './trainers/trainers.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import * as Joi from 'joi';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      validationSchema: Joi.object({
+        NODE_ENV: Joi.string()
+          .valid('development', 'production')
+          .default('development'),
+        PORT: Joi.number().default(3000),
+        DATABASE_URL: Joi.string().default(
+          'postgres://postgres:postgres@localhost/myway',
+        ),
+      }),
+    }),
     UsersModule,
     AuthModule,
-    TypeOrmModule.forRoot({ autoLoadEntities: true }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (configService: ConfigService) => ({
+        autoLoadEntities: true,
+        type: 'postgres',
+        url: configService.get('DATABASE_URL'),
+        entities: ['dist/**/*.entity{.ts,.js}'],
+        synchronize:
+          configService.get('NODE_ENV') === 'development' ? true : false,
+      }),
+    }),
     JwtRefreshModule,
     JwtAccessModule,
     CustomersModule,
