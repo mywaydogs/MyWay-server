@@ -24,7 +24,7 @@ import * as Joi from 'joi';
         PORT: Joi.number().default(3001),
         DATABASE_URL: Joi.string().default(
           'postgres://postgres:postgres@localhost/myway',
-        ),
+        )
       }),
     }),
     UsersModule,
@@ -35,7 +35,11 @@ import * as Joi from 'joi';
       useFactory: (configService: ConfigService) => ({
         autoLoadEntities: true,
         type: 'postgres',
-        url: `${configService.get('DATABASE_URL')}?sslmode=require`,
+        url: `${configService.get('DATABASE_URL')}${
+          configService.get('NODE_ENV') === 'development'
+            ? ''
+            : '?sslmode=require'
+        }`,
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize:
           configService.get('NODE_ENV') === 'development' ? true : false,
