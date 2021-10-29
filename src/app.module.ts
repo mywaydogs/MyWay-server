@@ -21,7 +21,7 @@ import * as Joi from 'joi';
         NODE_ENV: Joi.string()
           .valid('development', 'production')
           .default('development'),
-        PORT: Joi.number().default(3000),
+        PORT: Joi.number().default(3001),
         DATABASE_URL: Joi.string().default(
           'postgres://postgres:postgres@localhost/myway',
         ),
