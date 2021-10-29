@@ -24,7 +24,7 @@ import * as Joi from 'joi';
         PORT: Joi.number().default(3001),
         DATABASE_URL: Joi.string().default(
           'postgres://postgres:postgres@localhost/myway',
-        )
+        ),
       }),
     }),
     UsersModule,
@@ -42,7 +42,7 @@ import * as Joi from 'joi';
         }`,
         entities: ['dist/**/*.entity{.ts,.js}'],
         synchronize:
-          configService.get('NODE_ENV') === 'development' ? true : false,
+          configService.get('NODE_ENV') === 'development' ? true : true,
       }),
     }),
     JwtRefreshModule,
