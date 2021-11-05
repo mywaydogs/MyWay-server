@@ -7,6 +7,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { JwtAccessGuard } from 'src/jwt-access/jwt-access.guard';
 import { JwtRefreshGuard } from 'src/jwt-refresh/jwt-refresh.guard';
 import { User } from 'src/users/entities/user.entity';
@@ -17,7 +18,10 @@ import { LocalAuthGuard } from './local-auth.guard';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(
+    private configService: ConfigService,
+    private authService: AuthService,
+  ) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -33,11 +37,15 @@ export class AuthController {
       signed: true,
       httpOnly: true,
       path: '/api/auth/refresh',
+      domain: this.configService.get('DOMAIN'),
+      secure: this.configService.get('NODE_ENV') === 'production',
     });
     response.cookie('accessToken', access_token, {
       signed: true,
       httpOnly: true,
       path: '/api',
+      domain: this.configService.get('DOMAIN'),
+      secure: this.configService.get('NODE_ENV') === 'production',
     });
 
     return user;

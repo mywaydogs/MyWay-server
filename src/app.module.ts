@@ -25,6 +25,7 @@ import * as Joi from 'joi';
         DATABASE_URL: Joi.string().default(
           'postgres://postgres:postgres@localhost/myway',
         ),
+        DOMAIN: Joi.string().default('localhost'),
       }),
     }),
     UsersModule,
