@@ -16,8 +16,8 @@ export class TrainingGoalTask {
   goal: TrainingGoal;
 
   @Column({ nullable: true })
-  startDate: Date;
+  startingTraining: number;
 
   @Column({ nullable: true })
-  endDate: Date;
+  endingTraining: number;
 }

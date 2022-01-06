@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { json } from 'body-parser';
@@ -20,6 +21,8 @@ async function bootstrap() {
   app.use(cookieParser(config.cookie_secret));
 
   app.use(json({ limit: '5mb' }));
+
+  Logger.log(`DOMAIN=${configService.get('DOMAIN')}`);
 
   await app.listen(configService.get('PORT'));
 }
