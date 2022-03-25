@@ -1,4 +1,4 @@
-# MyWay 
+# MyWay <img src="doc/assets/logo.png" alt="Logo of a dog sitting at the end of a curvy path" width="100">
 
 This repository is for the server-side of the project. You can find the client side at [MyWay-client](https://github.com/zvikfir/MyWay-client).
 
